@@ -1,9 +1,8 @@
-package KayitGiris;
+package Otopark.KayitGiris;
 
 import Otopark.Insan.Insan;
 import util.DBConnection;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 public class KayitGirisKontrol extends DBConnection implements KayitGiris {

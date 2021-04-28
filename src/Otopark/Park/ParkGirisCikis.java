@@ -5,10 +5,7 @@ import Otopark.Arac.AracAbstract;
 import Otopark.Insan.Insan;
 import util.DBConnection;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -33,7 +30,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             while (rs.next()) {
                 car_id=(rs.getInt("id_car"));
             }
-
+            System.out.println("car_id="+car_id);
             System.out.println(car_id);
             //Kat bolum Kontrolü
             pst=this.connect().prepareStatement("select * from Kat_Bolum");
@@ -57,7 +54,28 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst = this.connect().prepareStatement("insert into Park (giris_saati,id_car,id_kat_bolum) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pst.setString(1,park.getGirisSaati());
             pst.setInt(2,car_id);
+            System.out.println("insert car_id:"+car_id);
             pst.setInt(3,kat_bolum.getId_Kat_Bolum());
+            System.out.println(kat_bolum.getId_Kat_Bolum());
+            pst.executeUpdate();
+
+            int temp_park_sayisi=0;
+            pst=this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
+            pst.setString(1,numara);
+            pst.setString(2,sifre);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                temp_park_sayisi=rs.getInt("park_sayisi");
+            }
+            pst=this.connect().prepareStatement("update kullanici set park_sayisi=? where numara=? and password=?");
+            pst.setInt(1,temp_park_sayisi+1);
+            pst.setString(2,numara);
+            pst.setString(3,sifre);
+            pst.executeUpdate();
+
+            pst=this.connect().prepareStatement("update Kat_Bolum set dolu_mu=? where id_kat_bolum=?");
+            pst.setInt(1,1);
+            pst.setInt(2,secim);
             pst.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -66,8 +84,39 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     }
 
     @Override
-    public void ParkCikis() {
+    public String ParkCikis(String numara,String sifre) {
+        System.out.println("-Kontrol noktası giris saati-");
+        String girisSaati = null;
+        try {
+            pst=this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
+            pst.setString(1,numara);
+            pst.setString(2,sifre);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                car_id=rs.getInt("id_car");
+            }
+            pst=this.connect().prepareStatement("select * from Park where id_car=? ");
+            pst.setInt(1,car_id);
+            rs=pst.executeQuery();
+            int temp_kat_bolum = 0;
+            while(rs.next()){
+                temp_kat_bolum=rs.getInt("id_kat_bolum");
+                girisSaati=rs.getString("giris_saati");
+            }
+            pst=this.connect().prepareStatement("delete from Park where id_car=? ");
+            pst.setInt(1,car_id);
+            pst.executeUpdate();
 
+            pst=this.connect().prepareStatement("update Kat_Bolum set dolu_mu=? where id_kat_bolum=?");
+            pst.setInt(1,0);
+            pst.setInt(2,temp_kat_bolum);
+            pst.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return girisSaati;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ParkArayuz {
     public void ParkEt(String numara,String sifre,Park park);
-    public void ParkCikis();
+    public String ParkCikis(String numara,String sifre);
     public List<Arac> Araclar();
     public List<ParkAbstract> Parklar();
 

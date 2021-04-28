@@ -1,4 +1,4 @@
-package KayitGiris;
+package Otopark.KayitGiris;
 
 import Otopark.Insan.Insan;
 
