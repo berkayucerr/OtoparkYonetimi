@@ -9,4 +9,8 @@ public class Otomobil extends AracAbstract {
     public Otomobil(int id, String model, String renk, String plaka) {
         super(id, model, renk, plaka);
     }
+
+    public Otomobil() {
+
+    }
 }

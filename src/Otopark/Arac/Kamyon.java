@@ -9,4 +9,7 @@ public class Kamyon extends AracAbstract{
     public Kamyon(int id, String model, String renk, String plaka) {
         super(id, model, renk, plaka);
     }
+
+    public Kamyon() {
+    }
 }

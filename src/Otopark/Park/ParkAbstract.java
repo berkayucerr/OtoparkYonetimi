@@ -1,9 +1,12 @@
 package Otopark.Park;
 
+import Otopark.Arac.AracAbstract;
+
 public abstract class ParkAbstract {
     protected int id_park,arac_id;
     protected String girisSaati;
     protected Kat_Bolum kat_bolum;
+    protected AracAbstract arac;
 
     public ParkAbstract() {
     }
@@ -13,6 +16,14 @@ public abstract class ParkAbstract {
         this.arac_id = arac_id;
         this.girisSaati = girisSaati;
         this.kat_bolum = kat_bolum;
+    }
+
+    public AracAbstract getArac() {
+        return arac;
+    }
+
+    public void setArac(AracAbstract arac) {
+        this.arac = arac;
     }
 
     public ParkAbstract(int arac_id, String girisSaati, Kat_Bolum kat_bolum) {

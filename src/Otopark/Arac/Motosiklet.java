@@ -8,4 +8,7 @@ public class Motosiklet extends AracAbstract{
     public Motosiklet(int id, String model, String renk, String plaka) {
         super(id, model, renk, plaka);
     }
+
+    public Motosiklet() {
+    }
 }

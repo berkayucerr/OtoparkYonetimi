@@ -9,4 +9,7 @@ public class Atv extends AracAbstract{
     public Atv(int id, String model, String renk, String plaka) {
         super(id, model, renk, plaka);
     }
+
+    public Atv() {
+    }
 }

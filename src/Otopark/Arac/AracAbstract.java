@@ -9,7 +9,9 @@ public abstract class AracAbstract extends DBConnection {
     public int getId() {
         return id;
     }
+    AracAbstract(){
 
+    }
     public AracAbstract(String model, String renk, String plaka) {
         this.model = model;
         this.renk = renk;
