@@ -4,6 +4,6 @@ import Otopark.Arac.AracAbstract;
 
 public interface AracFactory {
 
-    void AracEkle(AracAbstract arac);
+    int AracEkle(AracAbstract arac);
 
 }

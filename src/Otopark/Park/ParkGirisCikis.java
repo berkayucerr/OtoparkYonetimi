@@ -99,7 +99,8 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     @Override
     public String ParkCikis(String numara,String sifre) {
         System.out.println("-Kontrol noktası giris saati-");
-        String girisSaati = null;
+        String girisSaati = null,park_sayisi=null;
+
         try {
             pst=this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
             pst.setString(1,numara);
@@ -107,6 +108,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             rs=pst.executeQuery();
             while(rs.next()){
                 car_id=rs.getInt("id_car");
+                park_sayisi=rs.getString("park_sayisi");
             }
             pst=this.connect().prepareStatement("select * from Park where id_car=? ");
             pst.setInt(1,car_id);
@@ -129,7 +131,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             throwables.printStackTrace();
         }
 
-        return girisSaati;
+        return (girisSaati+"/"+park_sayisi);
     }
 
     @Override

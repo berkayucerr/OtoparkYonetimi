@@ -1,12 +1,13 @@
 package Otopark.Insan;
 
 import Otopark.Arac.Arac;
+import Otopark.Arac.AracAbstract;
 import util.DBConnection;
 
 public abstract class InsanAbstract extends DBConnection {
     protected int id;
     protected String isimSoyisim,numara,sifre,yetki;
-    protected Arac arac;
+    protected AracAbstract arac;
 
     public int getId() {
         return id;
@@ -63,12 +64,12 @@ public abstract class InsanAbstract extends DBConnection {
     public InsanAbstract() {
     }
 
-    public Arac getArac() {
+    public AracAbstract getArac() {
 
         return arac;
     }
 
-    public void setArac(Arac arac) {
+    public void setArac(AracAbstract arac) {
         this.arac = arac;
     }
 }

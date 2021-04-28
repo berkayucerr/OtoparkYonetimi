@@ -12,10 +12,11 @@ public class KayitGirisKontrol extends DBConnection implements KayitGiris {
     @Override
     public void kayit(Insan insan) {
             try {
-                PreparedStatement pst = connect().prepareStatement("insert into kullanici (isim_soyisim,numara,password) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement pst = connect().prepareStatement("insert into kullanici (isim_soyisim,numara,password,id_car) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
                 pst.setString(1, insan.getIsimSoyisim());
                 pst.setString(2, insan.getNumara());
                 pst.setString(3, insan.getSifre());
+                pst.setInt(4,insan.getArac().getId());
                 pst.executeUpdate();
 
             } catch (Exception ex) {
@@ -45,7 +46,6 @@ public class KayitGirisKontrol extends DBConnection implements KayitGiris {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-            temp.toString();
         return temp;
         }
     }
