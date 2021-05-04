@@ -1,13 +1,19 @@
 package Otopark.KayitGiris;
 
+import Otopark.Arac.*;
 import Otopark.Insan.Insan;
+import Otopark.Park.ParkGirisCikis;
 import util.DBConnection;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class KayitGirisKontrol extends DBConnection implements KayitGiris {
 
     Statement st;
+
 
     @Override
     public void kayit(Insan insan) {
@@ -37,6 +43,10 @@ public class KayitGirisKontrol extends DBConnection implements KayitGiris {
                 rs = pst.executeQuery();
                 while (rs.next()) {
                     temp = new Insan();
+                    AracAbstract arac;
+                    int id_car=rs.getInt("id_car");
+                    ParkGirisCikis p=new ParkGirisCikis();
+                    temp.setArac(p.Arac_Bul(id_car));
                     temp.setId(rs.getInt("id_kullanici"));
                     temp.setIsimSoyisim(rs.getString("isim_soyisim"));
                     temp.setNumara(rs.getString("numara"));

@@ -1,14 +1,10 @@
 package Otopark.Park;
 
 import Otopark.Arac.*;
-import Otopark.Insan.Insan;
 import util.DBConnection;
 
-import javax.sound.sampled.Line;
 import java.sql.*;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class ParkGirisCikis extends DBConnection implements ParkArayuz{
@@ -220,29 +216,14 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     public AracAbstract Arac_Bul(int id_carx){
         ResultSet rss;
         PreparedStatement pstt;
+        Arac aracislemleri=new Arac();
         AracAbstract arac=null;
         try {
             pstt=this.connect().prepareStatement("select * from Arac where id_arac=?");
             pstt.setInt(1,id_carx);
             rss=pstt.executeQuery();
             while(rss.next()){
-                switch (rss.getString("arac_sekli")) {
-                    case "Otomobil":
-                        arac=new Otomobil();
-                        break;
-                    case "Kamyon":
-                        arac=new Kamyon();
-                        break;
-                    case "Motosiklet":
-                        arac=new Motosiklet();
-                        break;
-                    case "Atv":
-                        arac=new Atv();
-                        break;
-                    default:
-                        System.out.println("yanlış giriş");
-                        break;
-                }
+                arac=aracislemleri.AracOlustur(rss.getString("arac_sekli"));
                 arac.setId(rss.getInt("id_arac"));
                 arac.setModel(rss.getString("model"));
                 arac.setRenk(rss.getString("renk"));

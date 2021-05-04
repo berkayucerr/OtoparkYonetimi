@@ -32,6 +32,30 @@ public class Arac extends DBConnection implements AracFactory {
         }
         return donus;
     }
+
+    @Override
+    public AracAbstract AracOlustur(String arac_tipi) {
+        AracAbstract arac = null;
+        switch (arac_tipi) {
+            case "Otomobil":
+                arac = new Otomobil();
+                break;
+            case "Kamyon":
+                arac = new Kamyon();
+                break;
+            case "Motosiklet":
+                arac = new Motosiklet();
+                break;
+            case "Atv":
+                arac = new Atv();
+                break;
+            default:
+                System.out.println("yanlış giriş");
+                break;
+        }
+        return arac;
+    }
+
     public int SQLInsert(AracAbstract arac,String aracsekli){
         ResultSet rs;
         int car_id = 0;

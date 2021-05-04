@@ -1,11 +1,13 @@
 package Otopark.Bridge;
-import Otopark.Arac.*;
+import Otopark.Arac.Arac;
+import Otopark.Arac.AracAbstract;
 import Otopark.Insan.Insan;
 import Otopark.KayitGiris.KayitGirisKontrol;
 import Otopark.Park.Indirim;
 import Otopark.Park.Kat_Bolum;
 import Otopark.Park.Park;
 import Otopark.Park.ParkGirisCikis;
+
 import java.time.LocalTime;
 import java.util.Scanner;
 public class ParkIslemleri {
@@ -29,23 +31,7 @@ public class ParkIslemleri {
             if (menuSecenek==1) {
                 System.out.println("Araç tipini giriniz...(Otomobil,Kamyon,Motosiklet,Atv)");
                 secenek = s.next();
-                switch (secenek) {
-                    case "Otomobil":
-                        arac = new Otomobil();
-                        break;
-                    case "Kamyon":
-                        arac = new Kamyon();
-                        break;
-                    case "Motosiklet":
-                        arac = new Motosiklet();
-                        break;
-                    case "Atv":
-                        arac = new Atv();
-                        break;
-                    default:
-                        System.out.println("yanlış giriş");
-                        break;
-                }
+                arac=aracislemleri.AracOlustur(secenek);
                 System.out.println("renk giriniz");
                 arac.setRenk(s.next());
                 System.out.println("plaka giriniz");
