@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.AracKaydiController">
+   <children>
+      <ImageView fitHeight="563.0" fitWidth="1072.0" layoutX="19.0" layoutY="-78.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@eco-car.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="plaka" layoutX="290.0" layoutY="110.0" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #F79595;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="model" layoutX="290.0" layoutY="190.0" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #F79595;" />
+      <TextField fx:id="renk" layoutX="290.0" layoutY="270.0" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #F79595;" />
+      <ComboBox fx:id="combobox" layoutX="67.0" layoutY="110.0" prefHeight="32.0" prefWidth="166.0" promptText="Araç Tipini Seçiniz" style="-fx-background-color: #F79595;" />
+      <Label layoutX="96.0" layoutY="30.0" prefHeight="32.0" prefWidth="109.0" text="Araç Bilgileri">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="290.0" layoutY="93.0" text="Plaka">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="290.0" layoutY="173.0" text="Model">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="291.0" layoutY="253.0" text="Renk">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="gir" layoutX="264.0" layoutY="347.0" mnemonicParsing="false" onAction="#gir" prefHeight="32.0" style="-fx-background-color: #F79595;" text="Gir">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

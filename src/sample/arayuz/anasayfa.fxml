@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="sample.Controllers.AnasayfaController">
+   <children>
+      <ImageView fitHeight="451.0" fitWidth="732.0" layoutX="75.0" layoutY="-2.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@parking-area1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="parketme" layoutX="250.0" layoutY="150.0" onAction="#parket" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #DBA81B;" text="Park Etme" textFill="#393f47">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="arackaydi" layoutX="100.0" layoutY="150.0" mnemonicParsing="false" onAction="#cikis" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #CC0E57;" text="Çıkış Yap" textFill="#393f47">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="parkcikisi" layoutX="400.0" layoutY="150.0" onAction="#parkcikis" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #19BF55;" text="Park Çıkışı" textFill="#393f47">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -3,9 +3,11 @@ package Otopark.Park;
 import Otopark.Arac.*;
 import util.DBConnection;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     PreparedStatement pst;
@@ -13,27 +15,17 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     int car_id;
     Kat_Bolum kat_bolum;
     LinkedList<Kat_Bolum> KatBolumListe=new LinkedList<Kat_Bolum>();
-    @Override
-    public void ParkEt(String numara,String sifre,Park park) {
-
+    public LinkedList<Kat_Bolum> KatBolumKontrol(){
         try {
 
             //Kullanıcı kontrolü
-            pst=this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
-            pst.setString(1,numara);
-            pst.setString(2,sifre);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                car_id=(rs.getInt("id_car"));
-            }
-            System.out.println("car_id="+car_id);
-            System.out.println(car_id);
+
             //Kat bolum Kontrolü
-            pst=this.connect().prepareStatement("select * from Kat_Bolum");
+            pst = this.connect().prepareStatement("select * from Kat_Bolum");
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                kat_bolum=new Kat_Bolum();
+                kat_bolum = new Kat_Bolum();
                 kat_bolum.setId_Kat_Bolum(rs.getInt("id_kat_bolum"));
                 kat_bolum.setKat(rs.getString("kat"));
                 kat_bolum.setBolum(rs.getString("bolum"));
@@ -41,23 +33,26 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
                 KatBolumListe.add(kat_bolum);
             }
 
-            Scanner s=new Scanner(System.in);
-            int secim=0;
-            System.out.println("Bir Kat Bölüm Seçiniz");
-            int gecici=0;
-            do {
-                for (int i = 0; i <KatBolumListe.size() ; i++) {
-                    System.out.println(KatBolumListe.get(i).getKat());
-                    System.out.println(KatBolumListe.get(i).getBolum());
-                    if(KatBolumListe.get(i).getDolu_mu()==1){
-                        System.out.println("Burası dolu seçemezsiniz");
-                    }
 
-                }
-                secim=s.nextInt();
+        }catch (Exception e){
+            e.getMessage();
+        }
 
-            }while (KatBolumListe.get(secim).getDolu_mu()==1);
+        return KatBolumListe;
+    }
+    @Override
+    public void ParkEt(String numara,String sifre,Park park,int secim) {
 
+        try {
+            pst = this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
+            pst.setString(1, numara);
+            pst.setString(2, sifre);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                car_id = (rs.getInt("id_car"));
+            }
+            System.out.println("car_id=" + car_id);
+            System.out.println(car_id);
             kat_bolum=KatBolumListe.get(secim);
             //Yerleştirme
             pst = this.connect().prepareStatement("insert into Park (giris_saati,id_car,id_kat_bolum) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
