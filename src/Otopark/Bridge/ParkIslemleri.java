@@ -1,4 +1,6 @@
 package Otopark.Bridge;
+
+
 import Otopark.Arac.Arac;
 import Otopark.Arac.AracAbstract;
 import Otopark.Insan.Insan;
