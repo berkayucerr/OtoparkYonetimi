@@ -40,7 +40,7 @@ class KayitGirisKontrolTest {
     public void GirisTest(){
         i2=k.Giris("123","123");
         Assertions.assertEquals(i2.getNumara(),"123");
-        Assertions.assertEquals(i2.getYetki(),"1");
+        Assertions.assertEquals(i2.getYetki(),"0");
         Assertions.assertEquals(i2.getIsimSoyisim(),"3");
         Assertions.assertEquals(i2.getSifre(),"123");
         Assertions.assertEquals(i2.getArac().getId(),17);

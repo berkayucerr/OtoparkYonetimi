@@ -43,14 +43,18 @@ public class ParkIslemleri {
             geciciSaatParkSayisi=geciciSaatParkSayisi[0].split(":");
             saat=LocalTime.now().getHour()-Integer.parseInt(geciciSaatParkSayisi[0]);
             dakika=LocalTime.now().getMinute()-Integer.parseInt(geciciSaatParkSayisi[1]);
+            if (dakika < 0)
+                dakika = -dakika;
+            if (saat < 0)
+                saat = -saat;
             dakika=(saat*60)+dakika;
             if(dakika<60){
                 sure=7.0;
             }else if(dakika>60){
                 sure=Double.parseDouble(String.valueOf(dakika))/60;
-                sure=sure+(sure*2);
+                sure=((sure)*2);
+                sure=sure+7;
             }
-
         }
         return sure;
     }

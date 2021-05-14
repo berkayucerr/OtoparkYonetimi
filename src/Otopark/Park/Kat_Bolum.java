@@ -33,6 +33,6 @@ public class Kat_Bolum {
     }
 
     public void setDolu_mu(int dolu_mu) {
-        this.dolu_mu = dolu_mu;
-    }
+        this.dolu_mu = dolu_mu;}
+
 }

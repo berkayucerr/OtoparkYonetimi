@@ -132,28 +132,9 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst=this.connect().prepareStatement("select * from Arac");
             rs=pst.executeQuery();
             while (rs.next()){
-                AracAbstract arac = null;
-                switch (rs.getString("arac_sekli")) {
-                    case "Otomobil":
-                        arac=new Otomobil();
-                        break;
-                    case "Kamyon":
-                        arac=new Kamyon();
-                        break;
-                    case "Motosiklet":
-                        arac=new Motosiklet();
-                        break;
-                    case "Atv":
-                        arac=new Atv();
-                        break;
-                    default:
-                        System.out.println("yanlış giriş");
-                        break;
-                }
-                arac.setId(rs.getInt("id_arac"));
-                arac.setModel(rs.getString("model"));
-                arac.setRenk(rs.getString("renk"));
-                arac.setPlaka(rs.getString("plaka"));
+                AracAbstract arac;
+                Arac a=new Arac();
+                arac=a.AracOlustur(rs.getString("arac_sekli"),rs.getInt("id_arac"),rs.getString("model"),rs.getString("renk"),rs.getString("plaka"));
                 liste.add(arac);
             }
 
@@ -218,11 +199,8 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pstt.setInt(1,id_carx);
             rss=pstt.executeQuery();
             while(rss.next()){
-                arac=aracislemleri.AracOlustur(rss.getString("arac_sekli"));
-                arac.setId(rss.getInt("id_arac"));
-                arac.setModel(rss.getString("model"));
-                arac.setRenk(rss.getString("renk"));
-                arac.setPlaka(rss.getString("plaka"));
+                arac=aracislemleri.AracOlustur(rss.getString("arac_sekli"),rss.getInt("id_arac"),rss.getString("model"),rss.getString("renk"),rss.getString("plaka"));
+
             }
     }catch (SQLException e){
             e.getMessage();
