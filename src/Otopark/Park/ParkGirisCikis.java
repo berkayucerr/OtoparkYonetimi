@@ -1,6 +1,7 @@
 package Otopark.Park;
 
-import Otopark.Arac.*;
+import Otopark.Arac.Arac;
+import Otopark.Arac.AracAbstract;
 import util.DBConnection;
 
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
     int car_id;
     Kat_Bolum kat_bolum;
     LinkedList<Kat_Bolum> KatBolumListe=new LinkedList<Kat_Bolum>();
+
     public LinkedList<Kat_Bolum> KatBolumKontrol(){
         try {
 
@@ -51,16 +53,12 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             while (rs.next()) {
                 car_id = (rs.getInt("id_car"));
             }
-            System.out.println("car_id=" + car_id);
-            System.out.println(car_id);
-            kat_bolum=KatBolumListe.get(secim);
             //Yerleştirme
             pst = this.connect().prepareStatement("insert into Park (giris_saati,id_car,id_kat_bolum) values(?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pst.setString(1,park.getGirisSaati());
             pst.setInt(2,car_id);
             System.out.println("insert car_id:"+car_id);
-            pst.setInt(3,kat_bolum.getId_Kat_Bolum());
-            System.out.println(kat_bolum.getId_Kat_Bolum());
+            pst.setInt(3,secim);
             pst.executeUpdate();
 
             int temp_park_sayisi=0;
@@ -207,6 +205,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
         }
         return arac;
     }
+
 }
 
 

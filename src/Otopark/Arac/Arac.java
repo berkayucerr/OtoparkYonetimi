@@ -34,7 +34,7 @@ public class Arac extends DBConnection implements AracFactory {
         return donus;
     }
 
-    int kontrol = 0;
+    private int kontrol = 0;
 
     @Override
     public AracAbstract AracOlustur(String arac_tipi, int id, String model, String renk, String plaka) {

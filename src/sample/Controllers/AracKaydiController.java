@@ -46,7 +46,6 @@ public class AracKaydiController implements Initializable {
     @FXML
     public void gir(ActionEvent e) throws IOException {
         arac=aracislemleri.AracOlustur(combobox.getSelectionModel().getSelectedItem(),0,model.getText(),renk.getText(),plaka.getText());
-        arac.setId(arac.InsertDB());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../arayuz/kayitol2.fxml"));
         Parent root = loader.load();
         KayitController scene2Controller = loader.getController();

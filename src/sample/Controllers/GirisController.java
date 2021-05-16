@@ -32,7 +32,6 @@ public class GirisController implements Initializable {
 
     @FXML
     public void giris(ActionEvent event)throws IOException {
-
         insan=kayitGirisKontrol.Giris(telno.getText(),sifre.getText());
         if(insan==null){
             Exception e = new Exception("Kullanıcı Bulunamadı");
