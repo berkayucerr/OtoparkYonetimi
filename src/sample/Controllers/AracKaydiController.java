@@ -45,14 +45,17 @@ public class AracKaydiController implements Initializable {
 
     @FXML
     public void gir(ActionEvent e) throws IOException {
-        arac=aracislemleri.AracOlustur(combobox.getSelectionModel().getSelectedItem(),0,model.getText(),renk.getText(),plaka.getText());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../arayuz/kayitol2.fxml"));
-        Parent root = loader.load();
-        KayitController scene2Controller = loader.getController();
-        scene2Controller.setArac(arac);
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+
+            arac=aracislemleri.AracOlustur(combobox.getSelectionModel().getSelectedItem(),0,model.getText(),renk.getText(),plaka.getText());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../arayuz/kayitol2.fxml"));
+            Parent root = loader.load();
+            KayitController scene2Controller = loader.getController();
+            scene2Controller.setArac(arac);
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
 
     }
 

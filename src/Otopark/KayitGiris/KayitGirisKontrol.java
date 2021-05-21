@@ -61,18 +61,21 @@ public class KayitGirisKontrol extends DBConnection implements KayitGiris {
     public Boolean Kullanici_Bul(String numara){
         ResultSet rsq;
         PreparedStatement psq;
-        Insan insan=new Insan();
+        boolean deger=false;
         try {
-            psq=this.connect().prepareStatement("select COUNT(*) from kullanici where numara=?");
+            psq=this.connect().prepareStatement("select count(*) as count from kullanici where numara=?");
             psq.setString(1,numara);
             rsq=psq.executeQuery();
-            if(rsq!=null){
-                return true;
+            while (rsq.next()) {
+                int count = rsq.getInt("count");
+                if (count >= 1) {
+                    deger=true;
+                }
             }
         }catch (SQLException e){
             e.getMessage();
         }
-        return false;
+        return deger;
     }
     }
 

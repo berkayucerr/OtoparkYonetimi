@@ -53,6 +53,7 @@ public class KayitController implements Initializable {
         insan.setArac(arac);
         if(kayitGirisKontrol.Kullanici_Bul(insan.getNumara()))
         {
+            System.out.println(insan.getNumara());
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Görünüşe Göre Zaten Kayıtlısın :)");

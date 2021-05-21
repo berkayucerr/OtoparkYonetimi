@@ -1,6 +1,6 @@
 package sample.Controllers;
 
-import Otopark.Bridge.ParkIslemleri;
+import Otopark.IndırımKontrol.ParkIslemleri;
 import Otopark.Insan.Insan;
 import Otopark.Park.Park;
 import Otopark.Park.ParkGirisCikis;

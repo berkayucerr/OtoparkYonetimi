@@ -1,6 +1,6 @@
 package Otopark.Arac;
 
-import Otopark.Bridge.ParkIslemleri;
+import Otopark.IndırımKontrol.ParkIslemleri;
 import Otopark.Insan.Insan;
 import Otopark.KayitGiris.KayitGirisKontrol;
 import Otopark.Park.Kat_Bolum;

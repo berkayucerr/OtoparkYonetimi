@@ -99,7 +99,6 @@ public class ParkController implements Initializable {
             if (a.get(i).getDolu_mu() == 0) {
                 top.setStyle("-fx-background-color: Green");
             } else{
-                liste.getItems().get(i).setDisable(true);
                 top.setStyle("-fx-background-color: Red");
             }
             liste.getItems().add(top);

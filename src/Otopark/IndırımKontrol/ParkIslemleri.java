@@ -1,4 +1,4 @@
-package Otopark.Bridge;
+package Otopark.IndırımKontrol;
 
 
 import Otopark.Arac.Arac;
