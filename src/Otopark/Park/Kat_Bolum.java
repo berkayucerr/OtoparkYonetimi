@@ -4,6 +4,13 @@ public class Kat_Bolum {
     private String kat,bolum;
     private int dolu_mu,id_Kat_Bolum;
 
+    public void Fill(){
+        this.setDolu_mu(1);
+    }
+    public void Empty(){
+        this.setDolu_mu(0);
+    }
+
     public String getKat() {
         return kat;
     }

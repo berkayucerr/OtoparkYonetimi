@@ -50,7 +50,14 @@ public class AnasayfaController implements Initializable {
         if (arama(parkGirisCikis.Parklar())) {
             e = new Exception("Çıkışınız Yapıldı. Yine Bekleriz....");
             alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText(String.valueOf(parkIslemleri.IndirimKontrol(getInsan().getNumara(), getInsan().getSifre())));
+            //indirim ve park sayısı ayrıştırma
+            String a=String.valueOf(parkIslemleri.IndirimKontrol(getInsan().getNumara(), getInsan().getSifre()));
+            String [] dizi=a.split("-");
+            if(dizi[1].equals("10")){
+                alert.setHeaderText("Tebrikler Bedava Park Kazandınız, Ücret Bulunmamaktadır.");
+            }else{
+                alert.setHeaderText("Fiyat ="+dizi[0]+ "Park Sayınız ="+dizi[1]);
+            }
             alert.getDialogPane();
             alert.showAndWait();
         } else {

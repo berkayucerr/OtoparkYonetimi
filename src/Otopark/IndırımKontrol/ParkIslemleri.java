@@ -27,7 +27,7 @@ public class ParkIslemleri {
 
     }
 
-    public double IndirimKontrol(String numara,String sifre){
+    public String IndirimKontrol(String numara,String sifre){
         Double sure=0.0;
         String saatParkSayisi=park.ParkCikis(numara,sifre);
         System.out.println(saatParkSayisi);
@@ -35,6 +35,8 @@ public class ParkIslemleri {
         for (int i = 0; i <geciciSaatParkSayisi.length ; i++) {
             System.out.println(geciciSaatParkSayisi[i]);
         }
+        int parkSayisi=Integer.parseInt(geciciSaatParkSayisi[1]);
+
         if(Integer.parseInt(geciciSaatParkSayisi[1])>9){
             Indirim i=new Indirim();
             i.indirimYap(numara,sifre);
@@ -50,13 +52,13 @@ public class ParkIslemleri {
             dakika=(saat*60)+dakika;
             if(dakika<60){
                 sure=7.0;
-            }else if(dakika>60){
+            }else {
                 sure=Double.parseDouble(String.valueOf(dakika))/60;
-                sure=((sure)*2);
+                sure=((sure-1)*2);
                 sure=sure+7;
             }
         }
-        return sure;
+        return String.valueOf(sure)+"-"+String.valueOf(parkSayisi);
     }
 
 }

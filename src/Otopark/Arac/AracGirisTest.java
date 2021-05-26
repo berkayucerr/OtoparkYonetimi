@@ -23,6 +23,8 @@ public class AracGirisTest {
     private int secim=3;
     AracAbstract aracim;
     Kat_Bolum kat_bolum;
+    Kat_Bolum kx=new Kat_Bolum();
+
 
     @Before
     public void Hazirlama(){
@@ -41,7 +43,8 @@ public class AracGirisTest {
         k.kayit(insan);
         insan=k.Giris(insan.getNumara(),insan.getSifre());
         p.setGirisSaati(String.valueOf(LocalTime.now().getHour()) + ":" + String.valueOf(LocalTime.now().getMinute()));
-        park.ParkEt(insan.getNumara(), insan.getSifre(), p, secim);
+        p.setKat_bolum(park.Kat_Bolum_Bul(3));
+        park.ParkEt(insan.getNumara(), insan.getSifre(), p);
         kat_bolum=park.Kat_Bolum_Bul(secim);
         aracim = park.Arac_Bul(arac.getId());
 
@@ -54,7 +57,7 @@ public class AracGirisTest {
         Assert.assertEquals(aracim.getModel(),arac.getModel());
         Assert.assertEquals(aracim.getPlaka(),arac.getPlaka());
         Assert.assertEquals(aracim.getRenk(),arac.getRenk());
-        Assert.assertEquals(kat_bolum.getDolu_mu(),1);
+        Assert.assertEquals(kx.getDolu_mu(),1);
 
 
     }

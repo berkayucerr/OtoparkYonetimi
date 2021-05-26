@@ -48,10 +48,12 @@ public class ParkController implements Initializable {
         return insan;
     }
 
-    private void ParkGirisi(int secim) {
+    private void ParkGirisi(Kat_Bolum kat_bolum) {
 
         p.setGirisSaati(String.valueOf(LocalTime.now().getHour()) + ":" + String.valueOf(LocalTime.now().getMinute()));
-        park.ParkEt(getInsan().getNumara(), getInsan().getSifre(), p, secim);
+        //KatBolumDuzenle
+        p.setKat_bolum(kat_bolum);
+        park.ParkEt(getInsan().getNumara(), getInsan().getSifre(), p);
 
     }
 
@@ -79,7 +81,7 @@ public class ParkController implements Initializable {
             alert.getDialogPane();
             alert.showAndWait();
         } else {
-            ParkGirisi(liste.getSelectionModel().getSelectedIndex());
+            ParkGirisi(a.get(liste.getSelectionModel().getSelectedIndex()));
             AnasayfayaGec(event);
         }
 

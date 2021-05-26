@@ -43,7 +43,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
         return KatBolumListe;
     }
     @Override
-    public void ParkEt(String numara,String sifre,Park park,int secim) {
+    public void ParkEt(String numara,String sifre,Park park) {
 
         try {
             pst = this.connect().prepareStatement("select * from kullanici where numara=? and password=?");
@@ -58,7 +58,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst.setString(1,park.getGirisSaati());
             pst.setInt(2,car_id);
             System.out.println("insert car_id:"+car_id);
-            pst.setInt(3,secim);
+            pst.setInt(3,park.getKat_bolum().getId_Kat_Bolum());
             pst.executeUpdate();
 
             int temp_park_sayisi=0;
@@ -74,16 +74,37 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst.setString(2,numara);
             pst.setString(3,sifre);
             pst.executeUpdate();
+            Doldur doldur=new Doldur(park.getKat_bolum());
+            doldur.Execute();
+            KatBolumUpdate(park.getKat_bolum());
 
-            pst=this.connect().prepareStatement("update Kat_Bolum set dolu_mu=? where id_kat_bolum=?");
-            pst.setInt(1,1);
-            pst.setInt(2,secim);
-            pst.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+
     }
+
+    public void KatBolumUpdate(Kat_Bolum kat_bolum){
+        try {
+            pst=this.connect().prepareStatement("update Kat_Bolum set dolu_mu=? where id_kat_bolum=?");
+            pst.setInt(1,kat_bolum.getDolu_mu());
+            pst.setInt(2,kat_bolum.getId_Kat_Bolum());
+            pst.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+
+
+
+
+    }
+
+
+
 
     @Override
     public String ParkCikis(String numara,String sifre) {
@@ -107,14 +128,14 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
                 temp_kat_bolum=rs.getInt("id_kat_bolum");
                 girisSaati=rs.getString("giris_saati");
             }
+            Kat_Bolum KaBo=Kat_Bolum_Bul(temp_kat_bolum);
             pst=this.connect().prepareStatement("delete from Park where id_car=? ");
             pst.setInt(1,car_id);
             pst.executeUpdate();
 
-            pst=this.connect().prepareStatement("update Kat_Bolum set dolu_mu=? where id_kat_bolum=?");
-            pst.setInt(1,0);
-            pst.setInt(2,temp_kat_bolum);
-            pst.executeUpdate();
+            Bosalt b=new Bosalt(KaBo);
+            b.Execute();
+            KatBolumUpdate(KaBo);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -187,6 +208,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
 
         return k;
     }
+
     public AracAbstract Arac_Bul(int id_carx){
         ResultSet rss;
         PreparedStatement pstt;
