@@ -11,11 +11,12 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 public class ParkGirisCikis extends DBConnection implements ParkArayuz{
-    PreparedStatement pst;
-    ResultSet rs;
-    int car_id;
-    Kat_Bolum kat_bolum;
-    LinkedList<Kat_Bolum> KatBolumListe=new LinkedList<Kat_Bolum>();
+    private PreparedStatement pst;
+    private ResultSet rs;
+    private int car_id;
+    private Kat_Bolum kat_bolum;
+    private LinkedList<Kat_Bolum> KatBolumListe=new LinkedList<Kat_Bolum>();
+    private Invoker invoker=new Invoker();
 
     public LinkedList<Kat_Bolum> KatBolumKontrol(){
         try {
@@ -74,14 +75,13 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst.setString(2,numara);
             pst.setString(3,sifre);
             pst.executeUpdate();
-            Doldur doldur=new Doldur(park.getKat_bolum());
-            doldur.Execute();
+            invoker.setCommand(new Doldur(park.getKat_bolum()));
+            invoker.Execute();
             KatBolumUpdate(park.getKat_bolum());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
     }
 
@@ -96,16 +96,7 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             throwables.printStackTrace();
         }
 
-
-
-
-
-
     }
-
-
-
-
     @Override
     public String ParkCikis(String numara,String sifre) {
         System.out.println("-Kontrol noktası giris saati-");
@@ -133,8 +124,8 @@ public class ParkGirisCikis extends DBConnection implements ParkArayuz{
             pst.setInt(1,car_id);
             pst.executeUpdate();
 
-            Bosalt b=new Bosalt(KaBo);
-            b.Execute();
+            invoker.setCommand(new Bosalt(KaBo));
+            invoker.Execute();
             KatBolumUpdate(KaBo);
 
         } catch (SQLException throwables) {

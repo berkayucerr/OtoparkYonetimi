@@ -10,6 +10,6 @@ public class Doldur implements DoldurBosalt
 
     @Override
     public void Execute() {
-        this.kat_bolum.Fill();
+        this.kat_bolum.setDolu();
     }
 }

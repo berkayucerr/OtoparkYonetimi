@@ -4,10 +4,10 @@ public class Kat_Bolum {
     private String kat,bolum;
     private int dolu_mu,id_Kat_Bolum;
 
-    public void Fill(){
+    public void setDolu(){
         this.setDolu_mu(1);
     }
-    public void Empty(){
+    public void setBos(){
         this.setDolu_mu(0);
     }
 
