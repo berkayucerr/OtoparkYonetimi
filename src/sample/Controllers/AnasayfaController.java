@@ -38,7 +38,11 @@ public class AnasayfaController implements Initializable {
 
     @FXML
     public void cikis(ActionEvent event) throws IOException {
-        System.exit(1);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../arayuz/ilkSayfa.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
