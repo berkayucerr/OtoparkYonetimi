@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Arac extends DBConnection implements AracFactory {
-    PreparedStatement pst;
+    private PreparedStatement pst;
     protected int donus = 0;
 
     @Override

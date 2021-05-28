@@ -2,7 +2,7 @@ package Otopark.Park;
 
 public class Doldur implements DoldurBosalt
 {
-    Kat_Bolum kat_bolum;
+    private Kat_Bolum kat_bolum;
 
     public Doldur(Kat_Bolum kat_bolum) {
         this.kat_bolum = kat_bolum;

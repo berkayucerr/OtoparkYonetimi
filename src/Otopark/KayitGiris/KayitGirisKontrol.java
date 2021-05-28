@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class KayitGirisKontrol extends DBConnection implements KayitGiris {
 
-    Statement st;
+    private Statement st;
 
 
     @Override

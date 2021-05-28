@@ -13,14 +13,14 @@ import Otopark.Park.ParkGirisCikis;
 import java.time.LocalTime;
 import java.util.Scanner;
 public class ParkIslemleri {
-    Park p=new Park();
-    Kat_Bolum k=new Kat_Bolum();
-    ParkGirisCikis park=new ParkGirisCikis();
-    KayitGirisKontrol kayitGirisKontrol=new KayitGirisKontrol();
-    Scanner s=new Scanner(System.in);
-    Arac aracislemleri=new Arac();
-    Insan insan;
-    AracAbstract arac;
+    private Park p=new Park();
+    private Kat_Bolum k=new Kat_Bolum();
+    private ParkGirisCikis park=new ParkGirisCikis();
+    private KayitGirisKontrol kayitGirisKontrol=new KayitGirisKontrol();
+    private Scanner s=new Scanner(System.in);
+    private Arac aracislemleri=new Arac();
+    private Insan insan;
+    private AracAbstract arac;
     private String[] geciciSaatParkSayisi;
     private int saat=0,dakika=0,menuSecenek=0;
     public ParkIslemleri(){
